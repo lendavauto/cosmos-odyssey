@@ -51,4 +51,3 @@ npm run build
 * [Node.js](http://www.dropwizard.io/1.0.2/docs/)
 * [Webpack](https://webpack.js.org/)
 * [Babel](https://babeljs.io/)
-"# cosmos-odyssey" 
