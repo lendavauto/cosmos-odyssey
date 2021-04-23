@@ -53,7 +53,7 @@ const FlightsWrapper = styled.div`
 
 const Flights = () => {
   const [{ offersLoading, apiData }, dispatch] = useStateValue();
-  const url = 'http://localhost:3000/TravelPrices';
+  const url = 'https://us-central1-cosmos-odyssey.cloudfunctions.net/customApi';
 
   const fetchData = async (url) => {
     dispatch({
