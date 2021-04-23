@@ -82,6 +82,8 @@ const FlightsList = () => {
   const url = 'http://localhost:3000/TravelPrices';
   // 30,66 on local 43, 79 on build
   const offerId = window.location.href.slice(43, 79);
+  const params = useParams();
+  console.log('OFFER_ID:',offerId);
 
   useEffect(() => {
     apiData.map((item) => {
