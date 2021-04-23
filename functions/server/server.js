@@ -10,7 +10,7 @@ const router = express.Router();
 
 module.exports.handler = serverless(app);
 
-app.use('/.netlify/functions/server', router);
+app.use('/.netlify/functions/server/server.js', router);
 
 app.use(
   cors({
