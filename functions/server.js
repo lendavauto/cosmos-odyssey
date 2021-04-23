@@ -19,8 +19,7 @@ app.use(
 );
 
 app.get(':endpoint([\\/\\w\\.-]*)', (req, res) => {
-  let endpoint =
-    'https://cosmos-odyssey.azurewebsites.net/api/v1.0' + req.params.endpoint;
+  let endpoint = process.env.API_BASE_URL + req.params.endpoint;
 
   axios
     .get(endpoint)
