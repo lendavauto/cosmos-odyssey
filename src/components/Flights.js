@@ -53,7 +53,8 @@ const FlightsWrapper = styled.div`
 
 const Flights = () => {
   const [{ offersLoading, apiData }, dispatch] = useStateValue();
-  const url = 'https://localhost:3000/TravelPrices';
+  const url =
+    'https://cors-anywhere.herokuapp.com/https://cosmos-odyssey.azurewebsites.net/api/v1.0/TravelPrices';
 
   const fetchData = async (url) => {
     dispatch({
