@@ -4,7 +4,7 @@ import { useStateValue } from '../StateProvider';
 import { Link } from 'react-router-dom';
 import { TiArrowBackOutline } from 'react-icons/ti';
 import { db } from '../firebase';
-import SingleReservation from './singleReservation';
+import SingleReservation from './SingleReservation';
 
 const ReservationsWrapper = styled.div`
   flex: 0.7;
