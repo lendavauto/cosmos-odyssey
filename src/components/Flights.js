@@ -53,8 +53,7 @@ const FlightsWrapper = styled.div`
 
 const Flights = () => {
   const [{ offersLoading, apiData }, dispatch] = useStateValue();
-  const url = 'https://odyssey-cosmos.netlify.app/api/v1.0/TravelPrices';
-  console.log('URL:', url);
+  const url = 'https://localhost:3000/TravelPrices';
 
   const fetchData = async (url) => {
     dispatch({
