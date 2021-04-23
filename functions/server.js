@@ -10,7 +10,7 @@ module.exports.handler = serverless(app);
 
 app.use('/.netlify/functions/server', router);
 
-router.use(
+app.use(
   cors({
     methods: ['GET', 'POST', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Access-Control-Allow-Origin', 'Accept'],
@@ -20,7 +20,7 @@ router.use(
   })
 );
 
-router.get(':endpoint([\\/\\w\\.-]*)', (req, res) => {
+app.get(':endpoint([\\/\\w\\.-]*)', (req, res) => {
   let endpoint =
     'https://cosmos-odyssey.azurewebsites.net/api/v1.0' + req.params.endpoint;
 
