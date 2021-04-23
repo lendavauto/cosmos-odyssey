@@ -54,6 +54,7 @@ const FlightsWrapper = styled.div`
 const Flights = () => {
   const [{ offersLoading, apiData }, dispatch] = useStateValue();
   const url = 'https://odyssey-cosmos.netlify.app/api/v1.0/TravelPrices';
+  console.log('URL:', url);
 
   const fetchData = async (url) => {
     dispatch({
@@ -63,7 +64,7 @@ const Flights = () => {
       const response = await axios.get(url);
       const flightOffers = response.data.legs;
       const offersDateValid = response.data.validUntil.slice(0, 19);
-
+      console.log('RESPONSE:', response);
       if (response === undefined) {
         return null;
       }
