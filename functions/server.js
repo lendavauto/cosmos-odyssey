@@ -32,4 +32,4 @@ app.get(':endpoint([\\/\\w\\.-]*)', (req, res) => {
     });
 });
 
-app.listen('https://odyssey-cosmos.netlify.app');
+app.listen(3000);
