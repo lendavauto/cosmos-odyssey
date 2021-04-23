@@ -80,14 +80,11 @@ const FlightsListWrapper = styled.div`
 const FlightsList = () => {
   const [{ apiData }, dispatch] = useStateValue();
   const url = 'http://localhost:3000/TravelPrices';
-  // 30,66 on local 43, 79 on build
-  const offerId = window.location.href.slice(43, 79);
-  const params = useParams();
-  console.log('OFFER_ID:',offerId);
+  const offerId = useParams();
 
   useEffect(() => {
     apiData.map((item) => {
-      if (item.id === offerId) {
+      if (item.id === offerId.id) {
         dispatch({
           type: 'SET_ROUTE_FROM',
           payload: item.routeInfo.from.name,
@@ -113,7 +110,7 @@ const FlightsList = () => {
       </div>
       <div className='flights-list'>
         {apiData.map((item) => {
-          if (item.id === offerId) {
+          if (item.id === offerId.id) {
             return item.providers.map((item) => {
               return <SingleProvider key={item.id} provider={item} />;
             });
