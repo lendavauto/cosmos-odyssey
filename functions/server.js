@@ -1,4 +1,3 @@
-require('dotenv').config();
 const express = require('express');
 const app = express();
 const serverless = require('serverless-http');
@@ -19,7 +18,8 @@ app.use(
 );
 
 app.get(':endpoint([\\/\\w\\.-]*)', (req, res) => {
-  let endpoint = process.env.API_BASE_URL + req.params.endpoint;
+  let endpoint =
+    'https://cosmos-odyssey.azurewebsites.net/api/v1.0' + req.params.endpoint;
 
   axios
     .get(endpoint)
