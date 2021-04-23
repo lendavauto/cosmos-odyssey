@@ -8,7 +8,7 @@ const router = express.Router();
 
 module.exports.handler = serverless(app);
 
-app.use('/functions/server', router);
+app.use('/.netlify/functions/server', router);
 
 router.use(
   cors({
@@ -34,6 +34,5 @@ router.get(':endpoint([\\/\\w\\.-]*)', (req, res) => {
     });
   console.log(endpoint);
 });
-
 
 app.listen(3000);
