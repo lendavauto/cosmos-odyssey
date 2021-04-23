@@ -79,7 +79,7 @@ const Flights = () => {
         });
       }
     } catch (error) {
-      dispatch({ type: 'FETCH_OFFERS_ERROR' });
+      dispatch({ type: 'FETCH_OFFERS_ERROR', payload: error });
     }
   };
 

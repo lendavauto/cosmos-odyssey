@@ -10,6 +10,7 @@ export const initialState = {
   offersLoading: false,
   flightsLoading: false,
   offersError: false,
+  offersErrorMessage: '',
   flightsError: false,
 };
 
@@ -35,7 +36,12 @@ const reducer = (state, action) => {
     case 'SET_ROUTE_TO':
       return { ...state, routeTo: action.payload };
     case 'FETCH_OFFERS_ERROR':
-      return { ...state, offersLoading: false, offersError: true };
+      return {
+        ...state,
+        offersLoading: false,
+        offersError: true,
+        offersErrorMessage: action.payload,
+      };
     case 'FETCH_FLIGHTS':
       return { ...state, flightsLoading: false, flightsList: action.payload };
     case 'FETCH_FLIGHTS_ERROR':
