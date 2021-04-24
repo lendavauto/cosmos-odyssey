@@ -11,6 +11,7 @@ export const initialState = {
   offersError: false,
   flightsError: false,
   filteredOffers: [],
+  clearedOffers: [],
   filter: 'price-lowest',
   destinationFrom: '',
   destinationTo: '',
@@ -28,6 +29,7 @@ const reducer = (state, action) => {
         ...state,
         apiData: action.payload,
         filteredOffers: action.payload,
+        clearedOffers: action.payload,
         offersLoading: false,
       };
     case 'SET_RESERVATIONS':
@@ -56,8 +58,9 @@ const reducer = (state, action) => {
     case 'UPDATE_FILTER':
       return { ...state, filter: action.payload };
     case 'FILTER_OFFERS':
-      const { filter, apiData } = state;
+      const { filter, apiData, filteredOffers } = state;
       let tempOffers = [...apiData];
+      let uniqueOffers = [...filteredOffers];
       if (filter === 'dist-lowest') {
         tempOffers = tempOffers.sort(
           (current, next) =>
@@ -85,86 +88,105 @@ const reducer = (state, action) => {
         });
       }
       if (filter === 'from-earth') {
-        tempOffers = tempOffers.sort((current, next) => {
-          console.log('When can we leave this "earth"?');
-        });
+        let filteredDestinations = uniqueOffers.filter(
+          (offer) => offer.routeInfo.from.name === 'Earth'
+        );
+        return { ...state, apiData: filteredDestinations };
       }
       if (filter === 'from-jupiter') {
-        tempOffers = tempOffers.sort((current, next) => {
-          console.log('When can we leave this "jupiter"?');
-        });
+        let filteredDestinations = uniqueOffers.filter(
+          (offer) => offer.routeInfo.from.name === 'Jupiter'
+        );
+        return { ...state, apiData: filteredDestinations };
       }
       if (filter === 'from-mars') {
-        tempOffers = tempOffers.sort((current, next) => {
-          console.log('When can we leave this "earth"?');
-        });
+        let filteredDestinations = uniqueOffers.filter(
+          (offer) => offer.routeInfo.from.name === 'Mars'
+        );
+        return { ...state, apiData: filteredDestinations };
       }
       if (filter === 'from-mercury') {
-        tempOffers = tempOffers.sort((current, next) => {
-          console.log('When can we leave this "earth"?');
-        });
+        let filteredDestinations = uniqueOffers.filter(
+          (offer) => offer.routeInfo.from.name === 'Mercury'
+        );
+        return { ...state, apiData: filteredDestinations };
       }
       if (filter === 'from-neptune') {
-        tempOffers = tempOffers.sort((current, next) => {
-          console.log('When can we leave this "earth"?');
-        });
+        let filteredDestinations = uniqueOffers.filter(
+          (offer) => offer.routeInfo.from.name === 'Neptune'
+        );
+        return { ...state, apiData: filteredDestinations };
       }
       if (filter === 'from-saturn') {
-        tempOffers = tempOffers.sort((current, next) => {
-          console.log('When can we leave this "earth"?');
-        });
+        let filteredDestinations = uniqueOffers.filter(
+          (offer) => offer.routeInfo.from.name === 'Saturn'
+        );
+        return { ...state, apiData: filteredDestinations };
       }
       if (filter === 'from-uranus') {
-        tempOffers = tempOffers.sort((current, next) => {
-          console.log('When can we leave this "earth"?');
-        });
+        let filteredDestinations = uniqueOffers.filter(
+          (offer) => offer.routeInfo.from.name === 'Uranus'
+        );
+        return { ...state, apiData: filteredDestinations };
       }
       if (filter === 'from-venus') {
-        tempOffers = tempOffers.sort((current, next) => {
-          console.log('When can we leave this "earth"?');
-        });
+        let filteredDestinations = uniqueOffers.filter(
+          (offer) => offer.routeInfo.from.name === 'Venus'
+        );
+        return { ...state, apiData: filteredDestinations };
       }
       if (filter === 'to-earth') {
-        tempOffers = tempOffers.sort((current, next) => {
-          console.log('When can we leave this "earth"?');
-        });
+        let filteredDestinations = uniqueOffers.filter(
+          (offer) => offer.routeInfo.to.name === 'Earth'
+        );
+        return { ...state, apiData: filteredDestinations };
       }
       if (filter === 'to-jupiter') {
-        tempOffers = tempOffers.sort((current, next) => {
-          console.log('When can we leave this "jupiter"?');
-        });
+        let filteredDestinations = uniqueOffers.filter(
+          (offer) => offer.routeInfo.to.name === 'Jupiter'
+        );
+        return { ...state, apiData: filteredDestinations };
       }
       if (filter === 'to-mars') {
-        tempOffers = tempOffers.sort((current, next) => {
-          console.log('When can we leave this "earth"?');
-        });
+        let filteredDestinations = uniqueOffers.filter(
+          (offer) => offer.routeInfo.to.name === 'Mars'
+        );
+        return { ...state, apiData: filteredDestinations };
       }
       if (filter === 'to-mercury') {
-        tempOffers = tempOffers.sort((current, next) => {
-          console.log('When can we leave this "earth"?');
-        });
+        let filteredDestinations = uniqueOffers.filter(
+          (offer) => offer.routeInfo.to.name === 'Mercury'
+        );
+        return { ...state, apiData: filteredDestinations };
       }
       if (filter === 'to-neptune') {
-        tempOffers = tempOffers.sort((current, next) => {
-          console.log('When can we leave this "earth"?');
-        });
+        let filteredDestinations = uniqueOffers.filter(
+          (offer) => offer.routeInfo.to.name === 'Neptune'
+        );
+        return { ...state, apiData: filteredDestinations };
       }
       if (filter === 'to-saturn') {
-        tempOffers = tempOffers.sort((current, next) => {
-          console.log('When can we leave this "earth"?');
-        });
+        let filteredDestinations = uniqueOffers.filter(
+          (offer) => offer.routeInfo.to.name === 'Saturn'
+        );
+        return { ...state, apiData: filteredDestinations };
       }
       if (filter === 'to-uranus') {
-        tempOffers = tempOffers.sort((current, next) => {
-          console.log('When can we leave this "earth"?');
-        });
+        let filteredDestinations = uniqueOffers.filter(
+          (offer) => offer.routeInfo.to.name === 'Uranus'
+        );
+        return { ...state, apiData: filteredDestinations };
       }
       if (filter === 'to-venus') {
-        tempOffers = tempOffers.sort((current, next) => {
-          console.log('When can we leave this "earth"?');
-        });
+        let filteredDestinations = uniqueOffers.filter(
+          (offer) => offer.routeInfo.to.name === 'Venus'
+        );
+        return { ...state, apiData: filteredDestinations };
       }
       return { ...state, apiData: tempOffers };
+    case 'CLEAR_FILTER':
+      const { clearedOffers } = state;
+      return { ...state, apiData: clearedOffers };
     default:
       return state;
   }

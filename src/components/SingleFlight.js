@@ -82,6 +82,10 @@ const SingleFlightWrapper = styled.article`
 const SingleFlight = (flight) => {
   const [{ priceList }, dispatch] = useStateValue();
 
+  const formatDistance = (x) => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  };
+
   return (
     <SingleFlightWrapper>
       <p className='flight-offer-nr'>
@@ -101,7 +105,8 @@ const SingleFlight = (flight) => {
           {flight.flight.routeInfo.to.name}
         </p>
         <p className='flight-distance'>
-          <span>distance:</span> {flight.flight.routeInfo.distance} km
+          <span>distance:</span>{' '}
+          {formatDistance(flight.flight.routeInfo.distance)} km
         </p>
       </div>
       <div className='btn-date-container'>

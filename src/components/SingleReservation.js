@@ -142,6 +142,9 @@ const SingleReservation = ({
   valid_until,
   flight_time,
 }) => {
+  const formatPrice = (x) => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  };
   const addToCart = (e) => {
     e.preventDefault();
   };
@@ -179,7 +182,7 @@ const SingleReservation = ({
       <div className='flight-price-container'>
         <p>
           <span>price: </span>
-          {price}
+          {formatPrice(price)}
           <CgDollar className='price-icon' />
         </p>
         <p>

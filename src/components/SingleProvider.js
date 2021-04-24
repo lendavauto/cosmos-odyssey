@@ -136,6 +136,10 @@ const SingleProvider = ({ provider }) => {
   let duration = moment.duration(end.diff(start));
   let flightTime = duration.asHours().toString().slice(0, 5);
 
+    const formatPrice = (x) => {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    };
+
   const addReservation = (e) => {
     e.preventDefault();
 
@@ -202,7 +206,7 @@ const SingleProvider = ({ provider }) => {
       <div className='flight-price-container'>
         <p>
           <span>price: </span>
-          {provider.price}
+          {formatPrice(provider.price)}
           <CgDollar className='price-icon' />
         </p>
       </div>

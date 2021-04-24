@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useStateValue } from '../StateProvider';
+import { AiOutlineClear } from 'react-icons/ai';
 
 const FilterWrapper = styled.div`
   display: flex;
@@ -25,6 +26,28 @@ const FilterWrapper = styled.div`
       padding: 2px;
       cursor: pointer;
     }
+    button {
+      display: flex;
+      align-items: center;
+      height: 24px;
+      padding: 2px;
+      border: none;
+      border-radius: 5px;
+      transition: 0.2s ease-in;
+      cursor: pointer;
+      p {
+        font-size: 12px;
+      }
+      .icon {
+        font-size: 15px;
+        margin-left: 5px;
+        color: #082b44;
+      }
+      :hover {
+        background-color: #aad7e3;
+        border: 1px solid #222;
+      }
+    }
   }
   .filter-select {
     margin-right: 15px;
@@ -43,12 +66,17 @@ const FilterWrapper = styled.div`
 `;
 
 const Filter = () => {
-  const [{ apiData, filter }, dispatch] = useStateValue();
+  const [{ filter }, dispatch] = useStateValue();
 
   const updateFilter = (e) => {
     const value = e.target.value;
-
     dispatch({ type: 'UPDATE_FILTER', payload: value });
+  };
+
+  const clearFilter = () => {
+    dispatch({
+      type: 'CLEAR_FILTER',
+    });
   };
 
   useEffect(() => {
@@ -95,6 +123,11 @@ const Filter = () => {
             <option value='to-venus'>Venus</option>
           </select>
         </div>
+        <button onClick={clearFilter}>
+          {' '}
+          <p>Clear filters:</p>
+          <AiOutlineClear className='icon' />
+        </button>
       </div>
       <div className='filter-container'>
         <label htmlFor='filter'>Filter by:</label>
