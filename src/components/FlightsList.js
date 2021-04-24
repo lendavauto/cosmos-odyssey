@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useStateValue } from '../StateProvider';
 import SingleProvider from './SingleProvider';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { RiSpaceShipLine } from 'react-icons/ri';
 import { TiArrowBackOutline } from 'react-icons/ti';
 
@@ -80,12 +80,16 @@ const FlightsListWrapper = styled.div`
 const FlightsList = () => {
   const [{ apiData }, dispatch] = useStateValue();
   const url = 'http://localhost:3000/TravelPrices';
-  // 29,79 on local 38, 87 on build
-  const offerId = window.location.href.slice(30, 87);
+  // local
+  // const offerId = window.location.href.slice(38, 87);
+  // build
+  const offerId = useParams();
+  
 
+  console.log(offerId.id);
   useEffect(() => {
     apiData.map((item) => {
-      if (item.id === offerId) {
+      if (item.id === offerId.id) {
         dispatch({
           type: 'SET_ROUTE_FROM',
           payload: item.routeInfo.from.name,
@@ -111,7 +115,7 @@ const FlightsList = () => {
       </div>
       <div className='flights-list'>
         {apiData.map((item) => {
-          if (item.id === offerId) {
+          if (item.id === offerId.id) {
             return item.providers.map((item) => {
               return <SingleProvider key={item.id} provider={item} />;
             });
