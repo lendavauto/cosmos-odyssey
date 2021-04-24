@@ -6,12 +6,14 @@ export const initialState = {
   routeTo: '',
   reservationsList: [],
   flightsList: [],
-  isModalOpen: false,
   offersLoading: false,
   flightsLoading: false,
   offersError: false,
-  offersErrorMessage: '',
   flightsError: false,
+  filteredOffers: [],
+  filter: 'price-lowest',
+  destinationFrom: '',
+  destinationTo: '',
 };
 
 const reducer = (state, action) => {
@@ -24,7 +26,8 @@ const reducer = (state, action) => {
     case 'SET_DATA':
       return {
         ...state,
-        apiData: [...(state.apiData = action.payload)],
+        apiData: action.payload,
+        filteredOffers: action.payload,
         offersLoading: false,
       };
     case 'SET_RESERVATIONS':
@@ -50,6 +53,118 @@ const reducer = (state, action) => {
       return { ...state, user: action.payload };
     case 'LOG_OUT':
       return { ...state, user: null };
+    case 'UPDATE_FILTER':
+      return { ...state, filter: action.payload };
+    case 'FILTER_OFFERS':
+      const { filter, apiData } = state;
+      let tempOffers = [...apiData];
+      if (filter === 'dist-lowest') {
+        tempOffers = tempOffers.sort(
+          (current, next) =>
+            current.routeInfo.distance - next.routeInfo.distance
+        );
+      }
+      if (filter === 'dist-highest') {
+        tempOffers = tempOffers.sort(
+          (current, next) =>
+            next.routeInfo.distance - current.routeInfo.distance
+        );
+      }
+      if (filter === 'name-a') {
+        tempOffers = tempOffers.sort((current, next) => {
+          return current.routeInfo.from.name.localeCompare(
+            next.routeInfo.from.name
+          );
+        });
+      }
+      if (filter === 'name-z') {
+        tempOffers = tempOffers.sort((current, next) => {
+          return next.routeInfo.from.name.localeCompare(
+            current.routeInfo.from.name
+          );
+        });
+      }
+      if (filter === 'from-earth') {
+        tempOffers = tempOffers.sort((current, next) => {
+          console.log('When can we leave this "earth"?');
+        });
+      }
+      if (filter === 'from-jupiter') {
+        tempOffers = tempOffers.sort((current, next) => {
+          console.log('When can we leave this "jupiter"?');
+        });
+      }
+      if (filter === 'from-mars') {
+        tempOffers = tempOffers.sort((current, next) => {
+          console.log('When can we leave this "earth"?');
+        });
+      }
+      if (filter === 'from-mercury') {
+        tempOffers = tempOffers.sort((current, next) => {
+          console.log('When can we leave this "earth"?');
+        });
+      }
+      if (filter === 'from-neptune') {
+        tempOffers = tempOffers.sort((current, next) => {
+          console.log('When can we leave this "earth"?');
+        });
+      }
+      if (filter === 'from-saturn') {
+        tempOffers = tempOffers.sort((current, next) => {
+          console.log('When can we leave this "earth"?');
+        });
+      }
+      if (filter === 'from-uranus') {
+        tempOffers = tempOffers.sort((current, next) => {
+          console.log('When can we leave this "earth"?');
+        });
+      }
+      if (filter === 'from-venus') {
+        tempOffers = tempOffers.sort((current, next) => {
+          console.log('When can we leave this "earth"?');
+        });
+      }
+      if (filter === 'to-earth') {
+        tempOffers = tempOffers.sort((current, next) => {
+          console.log('When can we leave this "earth"?');
+        });
+      }
+      if (filter === 'to-jupiter') {
+        tempOffers = tempOffers.sort((current, next) => {
+          console.log('When can we leave this "jupiter"?');
+        });
+      }
+      if (filter === 'to-mars') {
+        tempOffers = tempOffers.sort((current, next) => {
+          console.log('When can we leave this "earth"?');
+        });
+      }
+      if (filter === 'to-mercury') {
+        tempOffers = tempOffers.sort((current, next) => {
+          console.log('When can we leave this "earth"?');
+        });
+      }
+      if (filter === 'to-neptune') {
+        tempOffers = tempOffers.sort((current, next) => {
+          console.log('When can we leave this "earth"?');
+        });
+      }
+      if (filter === 'to-saturn') {
+        tempOffers = tempOffers.sort((current, next) => {
+          console.log('When can we leave this "earth"?');
+        });
+      }
+      if (filter === 'to-uranus') {
+        tempOffers = tempOffers.sort((current, next) => {
+          console.log('When can we leave this "earth"?');
+        });
+      }
+      if (filter === 'to-venus') {
+        tempOffers = tempOffers.sort((current, next) => {
+          console.log('When can we leave this "earth"?');
+        });
+      }
+      return { ...state, apiData: tempOffers };
     default:
       return state;
   }

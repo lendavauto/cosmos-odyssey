@@ -53,8 +53,9 @@ const LoginWrapper = styled.div`
     align-items: center;
     border-radius: 5px;
     background-color: #273b7a;
-    padding: 5px;
+    padding: 8px;
     width: 150px;
+    white-space: nowrap;
     margin-bottom: 15px;
     -webkit-box-shadow: 0px 10px 13px -7px #000000,
       5px 5px 15px 5px rgba(0, 0, 0, 0);

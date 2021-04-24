@@ -34,6 +34,7 @@ const SearchBarWrapper = styled.div`
     font-size: 20px;
     margin-right: 10px;
     border-radius: 5px;
+    outline: none;
     border: none;
     border-radius: 5px;
     @media (max-width: 650px) {
