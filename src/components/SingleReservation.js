@@ -152,7 +152,7 @@ const SingleReservation = ({
 
   const isOfferValid = moment(valid_until).add(3, 'hour').endOf().fromNow();
 
-  console.log(isOfferValid.includes('ago'));
+
   return (
     <>
       {isOfferValid.includes('ago') ? null : (

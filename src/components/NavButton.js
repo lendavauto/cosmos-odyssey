@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { db } from '../firebase';
-import { useStateValue } from '../StateProvider';
 
 const NavButtonWrapper = styled.button`
   position: relative;
@@ -47,35 +45,10 @@ const NavButtonWrapper = styled.button`
 `;
 
 const NavButton = ({ title, icon }) => {
-  const [{ reservationsList }, dispatch] = useStateValue();
-  const [reservations, setReservations] = useState([]);
 
-  useEffect(() => {
-    db.collection('reservations').onSnapshot((snapshot) => {
-      setReservations(
-        snapshot.docs.map((doc) => {
-          return {
-            firebase_id: doc.id,
-            data: doc.data(),
-          };
-        })
-      );
-    });
-  }, []);
-
-
-  useEffect(() => {
-    dispatch({
-      type: 'SET_RESERVATIONS',
-      payload: reservations,
-    });
-  }, [, reservations]);
   return (
     <NavButtonWrapper>
       <div className='container'>
-        {reservationsList.length > 0 && title === 'reservations' ? (
-          <p className='reservations-count'>{reservationsList.length}</p>
-        ) : null}
         {icon}
         <p>{title}</p>
       </div>

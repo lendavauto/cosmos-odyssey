@@ -66,9 +66,6 @@ const ReservationsWrapper = styled.div`
 const Reservations = () => {
   const [{ user }, dispatch] = useStateValue();
   const [reservations, setReservations] = useState([]);
-  const [count, setCount] = useState(0);
-
-
 
   useEffect(() => {
     const unsubscribe = db
@@ -77,10 +74,13 @@ const Reservations = () => {
       .onSnapshot((snapshot) => {
         setReservations(
           snapshot.docs.map((doc) => {
-            return {
-              firebase_id: doc.id,
-              data: doc.data(),
-            };
+            console.log('SNAPSHOT DOC:', doc.data().user_email);
+            if (doc.data().user_email) {
+              return {
+                firebase_id: doc.id,
+                data: doc.data(),
+              };
+            }
           })
         );
       });
@@ -95,7 +95,8 @@ const Reservations = () => {
       type: 'SET_RESERVATIONS',
       payload: reservations,
     });
-  }, [, reservations]);
+  }, [reservations]);
+
   return (
     <ReservationsWrapper>
       <div className='reservations-title'>

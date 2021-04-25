@@ -4,7 +4,6 @@ export const initialState = {
   priceList: '',
   routeFrom: '',
   routeTo: '',
-  reservationsList: [],
   flightsList: [],
   offersLoading: false,
   flightsLoading: false,
@@ -32,8 +31,6 @@ const reducer = (state, action) => {
         clearedOffers: action.payload,
         offersLoading: false,
       };
-    case 'SET_RESERVATIONS':
-      return { ...state, reservationsList: action.payload };
     case 'SET_PRICELIST':
       return { ...state, priceList: action.payload };
     case 'SET_ROUTE_FROM':
