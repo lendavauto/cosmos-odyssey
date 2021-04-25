@@ -46,7 +46,7 @@ const NavButtonWrapper = styled.button`
   }
 `;
 
-const NavButton = ({ title, icon, onClick }) => {
+const NavButton = ({ title, icon }) => {
   const [{ reservationsList }, dispatch] = useStateValue();
   const [reservations, setReservations] = useState([]);
 
@@ -63,6 +63,7 @@ const NavButton = ({ title, icon, onClick }) => {
     });
   }, []);
 
+
   useEffect(() => {
     dispatch({
       type: 'SET_RESERVATIONS',
@@ -71,7 +72,7 @@ const NavButton = ({ title, icon, onClick }) => {
   }, [, reservations]);
   return (
     <NavButtonWrapper>
-      <div className='container' onClick={onClick}>
+      <div className='container'>
         {reservationsList.length > 0 && title === 'reservations' ? (
           <p className='reservations-count'>{reservationsList.length}</p>
         ) : null}

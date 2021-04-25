@@ -145,62 +145,76 @@ const SingleReservation = ({
   const formatPrice = (x) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   };
+
   const addToCart = (e) => {
     e.preventDefault();
   };
 
+  const isOfferValid = moment(valid_until).add(3, 'hour').endOf().fromNow();
+
+  console.log(isOfferValid.includes('ago'));
   return (
-    <SingleReservationWrapper>
-      <p className='reservation-nr'>
-        <span>flight nr</span>: {flight_id}
-      </p>
-      <p className='reservation-nr'>
-        <span>company</span>: {company_name}
-      </p>
-      <div className='reservation-details-container'>
-        <p>
-          <span>first name</span>: {first_name}
-        </p>
-        <p>
-          <span>last name</span>: {last_name}
-        </p>
-        <p>
-          <span>email</span>: {user_email}
-        </p>
-      </div>
-      <div className='flight-details-container'>
-        <p>
-          <span>from:</span>
-          {route_from}
-        </p>
-        <FaSpaceShuttle className='flight-icon' />
-        <p>
-          <span>to:</span>
-          {route_to}
-        </p>
-      </div>
-      <div className='flight-price-container'>
-        <p>
-          <span>price: </span>
-          {formatPrice(price)}
-          <CgDollar className='price-icon' />
-        </p>
-        <p>
-          <span>Flight time:</span>
-          {flight_time}
-          <span className='hours-span'>Hours</span>
-        </p>
-      </div>
-      <div className='add-to-cart-valid-until-container'>
-        <button className='add-to-cart-btn' onClick={addToCart} type='submit'>
-          Add to cart <MdAddShoppingCart className='icon' />
-        </button>
-        <p>
-          <span>valid until:</span>
-          {moment(valid_until).format('MMMM Do YYYY, h:mm: a')}
-        </p>
-      </div>
-    </SingleReservationWrapper>
+    <>
+      {isOfferValid.includes('ago') ? null : (
+        <SingleReservationWrapper>
+          <p className='reservation-nr'>
+            <span>flight nr</span>: {flight_id}
+          </p>
+          <p className='reservation-nr'>
+            <span>company</span>: {company_name}
+          </p>
+          <div className='reservation-details-container'>
+            <p>
+              <span>first name</span>: {first_name}
+            </p>
+            <p>
+              <span>last name</span>: {last_name}
+            </p>
+            <p>
+              <span>email</span>: {user_email}
+            </p>
+          </div>
+          <div className='flight-details-container'>
+            <p>
+              <span>from:</span>
+              {route_from}
+            </p>
+            <FaSpaceShuttle className='flight-icon' />
+            <p>
+              <span>to:</span>
+              {route_to}
+            </p>
+          </div>
+          <div className='flight-price-container'>
+            <p>
+              <span>price: </span>
+              {formatPrice(price)}
+              <CgDollar className='price-icon' />
+            </p>
+            <p>
+              <span>Flight time:</span>
+              {flight_time}
+              <span className='hours-span'>Hours</span>
+            </p>
+          </div>
+          <div className='add-to-cart-valid-until-container'>
+            <button
+              className='add-to-cart-btn'
+              onClick={addToCart}
+              type='submit'
+            >
+              Add to cart <MdAddShoppingCart className='icon' />
+            </button>
+            <p>
+              <span>valid until:</span>
+              {moment(valid_until)
+                .add(3, 'hour')
+                .format('MMMM Do YYYY, h:mm: a')}
+            </p>
+          </div>
+        </SingleReservationWrapper>
+      )}
+    </>
   );
 };
 

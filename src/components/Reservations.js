@@ -68,6 +68,8 @@ const Reservations = () => {
   const [reservations, setReservations] = useState([]);
   const [count, setCount] = useState(0);
 
+
+
   useEffect(() => {
     const unsubscribe = db
       .collection('reservations')

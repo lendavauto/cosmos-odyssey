@@ -115,7 +115,7 @@ const SingleFlight = (flight) => {
         </Link>
         <p>
           <span>valid until:</span>{' '}
-          {moment(priceList).format('MMMM Do YYYY, h:mm: a')}
+          {moment(priceList).add(3, 'hour').format('MMMM Do YYYY, h:mm: a')}
         </p>
       </div>
     </SingleFlightWrapper>
