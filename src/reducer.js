@@ -1,7 +1,7 @@
 export const initialState = {
   user: null,
   apiData: [],
-  priceList: '',
+  priceListDate: '',
   routeFrom: '',
   routeTo: '',
   flightsList: [],
@@ -32,8 +32,8 @@ const reducer = (state, action) => {
         clearedOffers: action.payload,
         offersLoading: false,
       };
-    case 'SET_PRICELIST':
-      return { ...state, priceList: action.payload };
+    case 'SET_PRICELIST_DATE':
+      return { ...state, priceListDate: action.payload };
     case 'SET_ROUTE_FROM':
       return { ...state, routeFrom: action.payload };
     case 'SET_ROUTE_TO':
@@ -71,20 +71,19 @@ const reducer = (state, action) => {
       }
       if (flFilter === 'company-name-a') {
         tempFlights = tempFlights.sort((current, next) => {
-          return current.company.name.localeCompare(
-            next.company.name
-          );
+          return current.company.name.localeCompare(next.company.name);
         });
       }
-    if (flFilter === 'company-name-z') {
-      tempFlights = tempFlights.sort((current, next) => {
-        return next.company.name.localeCompare(current.company.name);
-      });
-    }
+      if (flFilter === 'company-name-z') {
+        tempFlights = tempFlights.sort((current, next) => {
+          return next.company.name.localeCompare(current.company.name);
+        });
+      }
       return { ...state, flightsList: tempFlights };
     case 'FILTER_OFFERS':
-      const { filter, apiData } = state;
+      const { filter, apiData, filteredOffers } = state;
       let tempOffers = [...apiData];
+      let uniqueOffers = [...filteredOffers];
 
       if (filter === 'dist-lowest') {
         tempOffers = tempOffers.sort(

@@ -82,28 +82,6 @@ const SingleProviderWrapper = styled.article`
       outline: none;
     }
   }
-  .flight-reservation-btn {
-    display: flex;
-    align-items: center;
-    text-transform: capitalize;
-    font-weight: bold;
-    font-size: 11px;
-    margin-left: 15px;
-    margin-top: -8px;
-    padding: 3px;
-    border-radius: 5px;
-    border: 1px solid lightgray;
-    transition: 0.2s ease-in;
-    cursor: pointer;
-    :hover {
-      background-color: #aad7e3;
-      border: 1px solid #222;
-    }
-    .icon {
-      font-size: 20px;
-      margin-left: 5px;
-    }
-  }
   .input-flex {
     flex: 0.5;
     display: flex;
@@ -118,16 +96,51 @@ const SingleProviderWrapper = styled.article`
       font-size: 11px;
     }
   }
+  .btn-success-msg-container {
+    button {
+      position: relative;
+      display: flex;
+      align-items: center;
+      text-transform: capitalize;
+      font-weight: bold;
+      font-size: 11px;
+      margin-left: 15px;
+      margin-top: -8px;
+      padding: 3px;
+      border-radius: 5px;
+      border: 1px solid lightgray;
+      transition: 0.2s ease-in;
+      cursor: pointer;
+      :hover {
+        background-color: #aad7e3;
+        border: 1px solid #222;
+      }
+      .icon {
+        font-size: 20px;
+        margin-left: 5px;
+      }
+    }
+    p {
+      position: absolute;
+      opacity: 0;
+      top: -5px;
+      right: -60px;
+      position: absolute;
+      color: limegreen;
+      font-size: 11px;
+    }
+  }
 `;
 
 const SingleProvider = ({ provider }) => {
-  const [{ user, priceList, routeFrom, routeTo }, dispatch] = useStateValue();
+  const [{ user, priceListDate, routeFrom, routeTo }, dispatch] = useStateValue();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const firstNameInput = useRef(0);
   const lastNameInput = useRef(0);
   const firstNameError = useRef(0);
   const lastNameError = useRef(0);
+  const successMsg = useRef(0);
   const startDate = provider.flightStart.slice(0, 19);
   const endDate = provider.flightEnd.slice(0, 19);
 
@@ -136,9 +149,9 @@ const SingleProvider = ({ provider }) => {
   let duration = moment.duration(end.diff(start));
   let flightTime = duration.asHours().toString().slice(0, 5);
 
-    const formatPrice = (x) => {
-      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    };
+  const formatPrice = (x) => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  };
 
   const addReservation = (e) => {
     e.preventDefault();
@@ -164,6 +177,7 @@ const SingleProvider = ({ provider }) => {
       lastNameInput.current.style = 'border: 1px solid #222';
       firstNameError.current.style = 'opacity: 0';
       lastNameError.current.style = 'opacity: 0';
+      successMsg.current.style = 'opacity: 1';
 
       db.collection('reservations').add({
         company_name: provider.company.name,
@@ -175,10 +189,14 @@ const SingleProvider = ({ provider }) => {
         flight_time: flightTime,
         route_from: routeFrom,
         route_to: routeTo,
-        valid_until: priceList,
+        valid_until: priceListDate,
         timestamp: firebase.firestore.Timestamp.now(),
       });
     }
+    const successMsgInterval = setInterval(() => {
+      successMsg.current.style = 'opacity: 0';
+      clearInterval(successMsgInterval);
+    }, 2000);
     setFirstName('');
     setLastName('');
   };
@@ -239,13 +257,12 @@ const SingleProvider = ({ provider }) => {
             />
           </div>
         </div>
-        <button
-          className='flight-reservation-btn'
-          onClick={addReservation}
-          type='submit'
-        >
-          Confirm reservation <HiOutlineSave className='icon' />
-        </button>
+        <div className='btn-success-msg-container'>
+          <button onClick={addReservation} type='submit'>
+            Confirm reservation <HiOutlineSave className='icon' />
+            <p ref={successMsg}>success!</p>
+          </button>
+        </div>
       </form>
     </SingleProviderWrapper>
   );

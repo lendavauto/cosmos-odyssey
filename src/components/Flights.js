@@ -73,7 +73,7 @@ const Flights = () => {
           payload: flightOffers,
         });
         dispatch({
-          type: 'SET_PRICELIST',
+          type: 'SET_PRICELIST_DATE',
           payload: offersDateValid,
         });
       }

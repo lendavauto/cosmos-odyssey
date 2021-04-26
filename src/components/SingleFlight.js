@@ -80,7 +80,7 @@ const SingleFlightWrapper = styled.article`
 `;
 
 const SingleFlight = (flight) => {
-  const [{ priceList }, dispatch] = useStateValue();
+  const [{ priceListDate }, dispatch] = useStateValue();
 
   const formatDistance = (x) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -115,7 +115,7 @@ const SingleFlight = (flight) => {
         </Link>
         <p>
           <span>valid until:</span>{' '}
-          {moment(priceList).add(3, 'hour').format('MMMM Do YYYY, h:mm: a')}
+          {moment(priceListDate).add(3, 'hour').format('MMMM Do YYYY, h:mm: a')}
         </p>
       </div>
     </SingleFlightWrapper>

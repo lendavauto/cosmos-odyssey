@@ -34,6 +34,7 @@ const FilterWrapper = styled.div`
       border: none;
       border-radius: 5px;
       transition: 0.2s ease-in;
+      margin-right: 15px;
       cursor: pointer;
       p {
         font-size: 12px;

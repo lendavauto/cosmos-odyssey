@@ -52,12 +52,12 @@ const OfferCounterWrapper = styled.div`
 `;
 
 const OfferCounter = () => {
-  const [{ priceList }, dispatch] = useStateValue();
+  const [{ priceListDate }, dispatch] = useStateValue();
 
   return (
     <OfferCounterWrapper>
       <h1>Hurry! The offers end:</h1>
-      <p>{moment(priceList).add(3,'hour').endOf().fromNow()}</p>
+      <p>{moment(priceListDate).add(3,'hour').endOf().fromNow()}</p>
     </OfferCounterWrapper>
   );
 };
