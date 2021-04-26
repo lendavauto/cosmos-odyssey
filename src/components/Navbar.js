@@ -31,6 +31,9 @@ const NavbarWrapper = styled.nav`
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    @media (max-width: 900px) {
+      display: none;
+    }
     h1 {
       font-size: 18px;
       margin-left: 18px;
@@ -55,6 +58,9 @@ const NavbarWrapper = styled.nav`
     left: 0;
     bottom: 0;
     width: 100%;
+    @media (max-width: 900px) {
+      display: none;
+    }
   }
   .navbar-bcg-img-2 {
     position: absolute;
@@ -62,6 +68,9 @@ const NavbarWrapper = styled.nav`
     top: 20%;
     width: 35%;
     transform: translateY(100px);
+    @media (max-width: 900px) {
+      display: none;
+    }
   }
 `;
 

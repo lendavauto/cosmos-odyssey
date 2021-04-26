@@ -15,6 +15,9 @@ const MainSectionWrapper = styled.section`
   border-left: 2px solid #1a78ab;
   border-right: 2px solid #1a78ab;
   overflow: hidden;
+  @media (max-width: 900px) {
+    flex-direction: column;
+  }
 `;
 
 const MainSection = () => {

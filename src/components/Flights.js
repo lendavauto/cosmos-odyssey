@@ -26,6 +26,9 @@ const FlightsWrapper = styled.div`
     width: 100%;
     background-color: #5fa7c9;
     border-bottom: 1px solid #1a78ab;
+    @media (max-width: 900px) {
+      display: none;
+    }
     h1 {
       color: #fff;
       font-size: 15px;
@@ -43,6 +46,9 @@ const FlightsWrapper = styled.div`
   .flights-list {
     overflow-y: scroll;
     height: calc(100% - 89px);
+    @media (max-width: 900px) {
+      height: calc(100% - 180px);
+    }
   }
   .loader-container {
     height: 676px;

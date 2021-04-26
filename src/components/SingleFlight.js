@@ -8,7 +8,6 @@ import moment from 'moment';
 const SingleFlightWrapper = styled.article`
   height: 142px;
   border-bottom: 1px solid #1a78ab;
-
   .flight-offer-nr {
     font-size: 10px;
     margin-left: 15px;

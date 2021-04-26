@@ -14,6 +14,9 @@ const CheckoutWrapper = styled.div`
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  @media (max-width: 900px) {
+    flex: 1;
+  }
   .checkout-title {
     display: flex;
     justify-content: center;
@@ -25,6 +28,12 @@ const CheckoutWrapper = styled.div`
     h1 {
       color: #fff;
       font-size: 15px;
+      @media (max-width: 900px) {
+        margin-top: -10px;
+      }
+    }
+    @media (max-width: 900px) {
+     display: none;
     }
   }
   .checkout-count {

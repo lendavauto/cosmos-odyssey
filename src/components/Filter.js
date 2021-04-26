@@ -9,8 +9,12 @@ const FilterWrapper = styled.div`
   align-items: center;
   background-color: #5fa7c9;
   color: #fff;
-  height: 38px;
+  height: 60px;
   border-bottom: 1px solid #1a78ab;
+  @media (max-width: 900px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
   .destination-filter-container {
     display: flex;
     align-items: center;
@@ -62,6 +66,14 @@ const FilterWrapper = styled.div`
       font-size: 12px;
       margin-right: 15px;
       font-weight: bold;
+    }
+    select {
+      @media (max-width: 900px) {
+        margin-left: 20px;
+      }
+    }
+    @media (max-width: 900px) {
+      margin-left: 15px;
     }
   }
 `;

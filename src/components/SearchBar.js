@@ -9,6 +9,9 @@ const SearchBarWrapper = styled.div`
   height: 50px;
   width: 100%;
   border-bottom: 1px solid #1a78ab;
+  @media (max-width: 900px) {
+    display: none;
+  }
   .search-bar {
     display: flex;
     align-items: center;

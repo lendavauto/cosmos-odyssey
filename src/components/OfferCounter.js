@@ -24,6 +24,9 @@ const OfferCounterWrapper = styled.div`
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  @media (max-width: 900px) {
+    display: none;
+  }
   h1 {
     text-align: center;
     font-size: 11px;

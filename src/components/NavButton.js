@@ -12,6 +12,9 @@ const NavButtonWrapper = styled.button`
   border-bottom: 1px solid #1a78ab;
   transition: 0.2s ease-in;
   cursor: pointer;
+  @media (max-width: 900px) {
+    height: 30px;
+  }
   :hover {
     background-color: #082b44;
   }
@@ -25,22 +28,6 @@ const NavButtonWrapper = styled.button`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-  }
-  .reservations-count {
-    position: absolute;
-    text-align: center;
-    height: 18px;
-    width: 18px;
-    color: #fff;
-    background-color: #78bfdd;
-    font-size: 12px;
-    font-weight: bold;
-    left: 14px;
-    bottom: 2px;
-    padding: 4px;
-    border: 2px solid #fff;
-    border-radius: 50%;
-    transform: scale(0.7);
   }
 `;
 

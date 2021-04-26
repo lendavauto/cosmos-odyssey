@@ -29,6 +29,9 @@ const FlightsListWrapper = styled.div`
     width: 100%;
     background-color: #5fa7c9;
     border-bottom: 1px solid #1a78ab;
+    @media (max-width: 900px) {
+      display: none;
+    }
     h1 {
       color: #fff;
       font-size: 15px;
@@ -75,6 +78,9 @@ const FlightsListWrapper = styled.div`
     width: 100%;
     height: calc(100% - 89px);
     overflow-y: scroll;
+    @media (max-width: 900px) {
+      height: calc(100% - 38px);
+    }
   }
 `;
 

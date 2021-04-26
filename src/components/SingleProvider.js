@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { useStateValue } from '../StateProvider';
 import { FaSpaceShuttle } from 'react-icons/fa';
@@ -11,6 +11,10 @@ import { db } from '../firebase';
 const SingleProviderWrapper = styled.article`
   height: 191px;
   border-bottom: 1px solid #1a78ab;
+  width: 100%;
+  @media (max-width: 900px) {
+    height: 230px;
+  }
   .flight-nr {
     font-size: 10px;
     margin-left: 15px;
@@ -67,6 +71,10 @@ const SingleProviderWrapper = styled.article`
     align-items: center;
     margin: 0 15px;
     margin-bottom: 5px;
+    @media (max-width: 900px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
     p {
       text-transform: capitalize;
       font-weight: bold;
@@ -74,6 +82,7 @@ const SingleProviderWrapper = styled.article`
     }
     input {
       display: flex;
+      flex-direction: column;
       align-items: center;
       margin-left: 5px;
       border: 1px solid #222;
@@ -81,12 +90,21 @@ const SingleProviderWrapper = styled.article`
       padding: 2px;
       outline: none;
     }
+    .last-name-input {
+      margin-left: 15px;
+      @media (max-width: 900px) {
+        margin-left: 0;
+      }
+    }
   }
   .input-flex {
     flex: 0.5;
     display: flex;
     align-items: center;
     position: relative;
+    @media (max-width: 900px) {
+      margin-top: -5px;
+    }
     .error-msg {
       position: absolute;
       opacity: 0;
@@ -94,6 +112,11 @@ const SingleProviderWrapper = styled.article`
       bottom: 24px;
       color: red;
       font-size: 11px;
+      @media (max-width: 900px) {
+        white-space: nowrap;
+        bottom: 5px;
+        left: 250px;
+      }
     }
   }
   .btn-success-msg-container {
@@ -133,7 +156,10 @@ const SingleProviderWrapper = styled.article`
 `;
 
 const SingleProvider = ({ provider }) => {
-  const [{ user, priceListDate, routeFrom, routeTo }, dispatch] = useStateValue();
+  const [
+    { user, priceListDate, routeFrom, routeTo },
+    dispatch,
+  ] = useStateValue();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const firstNameInput = useRef(0);
@@ -143,7 +169,7 @@ const SingleProvider = ({ provider }) => {
   const successMsg = useRef(0);
   const startDate = provider.flightStart.slice(0, 19);
   const endDate = provider.flightEnd.slice(0, 19);
-
+  console.log(priceListDate);
   let end = moment(endDate);
   let start = moment(startDate);
   let duration = moment.duration(end.diff(start));
@@ -243,7 +269,7 @@ const SingleProvider = ({ provider }) => {
               required
             />
           </div>
-          <div className='input-flex'>
+          <div className='input-flex last-name-input'>
             <p>Last name:</p>
             <p className='error-msg' ref={lastNameError}>
               enter last name!

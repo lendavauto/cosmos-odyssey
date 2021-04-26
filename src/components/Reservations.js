@@ -17,6 +17,9 @@ const ReservationsWrapper = styled.div`
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  @media (max-width: 900px) {
+    flex: 1;
+  }
   .reservations-title {
     display: flex;
     justify-content: center;
@@ -25,6 +28,9 @@ const ReservationsWrapper = styled.div`
     width: 100%;
     background-color: #5fa7c9;
     border-bottom: 1px solid #1a78ab;
+    @media (max-width: 900px) {
+   display: none;
+    }
     h1 {
       color: #fff;
       font-size: 15px;
@@ -59,8 +65,7 @@ const ReservationsWrapper = styled.div`
     }
   }
   .reservations-container {
-    height: calc(100% - 89px);
-    max-height: 7440px;
+    height: calc(100% - 209px);
     overflow-y: scroll;
   }
 `;
@@ -127,7 +132,7 @@ const Reservations = () => {
               .add(3, 'hour')
               .endOf()
               .fromNow();
-            console.log('IS IT VALID:',isOfferValid);
+
             if (user_email === user.email && !isOfferValid.includes('ago')) {
               return (
                 <SingleReservation

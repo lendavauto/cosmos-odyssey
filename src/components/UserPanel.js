@@ -16,6 +16,9 @@ const UserPanelWrapper = styled.div`
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  @media (max-width: 900px) {
+    flex: 1;
+  }
   .user-panel-title {
     display: flex;
     justify-content: center;
@@ -27,6 +30,9 @@ const UserPanelWrapper = styled.div`
     h1 {
       color: #fff;
       font-size: 15px;
+    }
+    @media (max-width: 900px) {
+      display: none;
     }
   }
   .user-panel-welcome {
@@ -45,6 +51,9 @@ const UserPanelWrapper = styled.div`
   .user-details {
     font-size: 15px;
     height: 288px;
+    @media (max-width: 900px) {
+      margin-top: -10px;
+    }
   }
   .details-container {
     display: flex;
@@ -58,6 +67,9 @@ const UserPanelWrapper = styled.div`
       span {
         font-size: 13px;
         font-weight: 500;
+      }
+      @media (max-width: 900px) {
+        margin-top: 5px;
       }
     }
     button {

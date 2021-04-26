@@ -13,6 +13,9 @@ const PasswordWrapper = styled.div`
     display: flex;
     flex-direction: column;
     width: 30%;
+    @media (max-width: 900px) {
+      margin-top: -15px;
+    }
     p {
       margin-bottom: 5px;
       font-weight: bold;
