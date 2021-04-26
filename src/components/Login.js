@@ -5,7 +5,6 @@ import logo from '../images/google-logo.png';
 import loginBcg from '../images/login-bcg.png';
 import rocketBcg from '../images/reservations-bcg.png';
 import { auth, provider } from '../firebase';
-import firebase from 'firebase';
 
 const LoginWrapper = styled.div`
   position: relative;

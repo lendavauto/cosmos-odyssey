@@ -33,7 +33,7 @@ const CheckoutWrapper = styled.div`
       }
     }
     @media (max-width: 900px) {
-     display: none;
+      display: none;
     }
   }
   .checkout-count {

@@ -63,7 +63,7 @@ const FilterWrapper = styled.div`
   .filter-container {
     display: flex;
     align-items: center;
-      margin-bottom: 4px;
+    margin-bottom: 4px;
     label {
       font-size: 12px;
       margin-right: 15px;

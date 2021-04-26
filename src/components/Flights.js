@@ -69,7 +69,7 @@ const Flights = () => {
       const response = await axios.get(url);
       const flightOffers = response.data.legs;
       const offersDateValid = response.data.validUntil.slice(0, 19);
-      
+
       if (response === undefined) {
         return null;
       }

@@ -31,8 +31,7 @@ const NavButtonWrapper = styled.button`
   }
 `;
 
-const NavButton = ({ title, icon , onClick }) => {
-
+const NavButton = ({ title, icon, onClick }) => {
   return (
     <NavButtonWrapper onClick={onClick}>
       <div className='container'>
