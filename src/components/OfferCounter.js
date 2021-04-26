@@ -54,8 +54,6 @@ const OfferCounterWrapper = styled.div`
 const OfferCounter = () => {
   const [{ priceList }, dispatch] = useStateValue();
 
-  console.log('PRICELIST:', priceList);
-
   return (
     <OfferCounterWrapper>
       <h1>Hurry! The offers end:</h1>

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { TiArrowBackOutline } from 'react-icons/ti';
 import { db } from '../firebase';
 import SingleReservation from './SingleReservation';
+import moment from 'moment';
 
 const ReservationsWrapper = styled.div`
   flex: 0.7;
@@ -59,6 +60,7 @@ const ReservationsWrapper = styled.div`
   }
   .reservations-container {
     height: calc(100% - 89px);
+    max-height: 7440px;
     overflow-y: scroll;
   }
 `;
@@ -74,13 +76,10 @@ const Reservations = () => {
       .onSnapshot((snapshot) => {
         setReservations(
           snapshot.docs.map((doc) => {
-            console.log('SNAPSHOT DOC:', doc.data().user_email);
-            if (doc.data().user_email) {
-              return {
-                firebase_id: doc.id,
-                data: doc.data(),
-              };
-            }
+            return {
+              firebase_id: doc.id,
+              data: doc.data(),
+            };
           })
         );
       });
@@ -108,7 +107,7 @@ const Reservations = () => {
         </Link>
       </div>
       <div className='reservations-container'>
-        {reservations.map(
+        {reservations?.map(
           ({
             data: {
               flight_id,
@@ -124,7 +123,12 @@ const Reservations = () => {
               timestamp,
             },
           }) => {
-            if (user_email === user.email) {
+            const isOfferValid = moment(valid_until)
+              .add(3, 'hour')
+              .endOf()
+              .fromNow();
+            console.log('IS IT VALID:',isOfferValid);
+            if (user_email === user.email && !isOfferValid.includes('ago')) {
               return (
                 <SingleReservation
                   key={timestamp + user_email}

@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useStateValue } from '../StateProvider';
 import SingleProvider from './SingleProvider';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { RiSpaceShipLine } from 'react-icons/ri';
 import { TiArrowBackOutline } from 'react-icons/ti';
+import FlightsListFilter from './FlightsListFilter';
 
 const FlightsListWrapper = styled.div`
   background-color: #fff;
@@ -46,7 +47,7 @@ const FlightsListWrapper = styled.div`
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     height: 38px;
     background-color: #5fa7c9;
     color: #fff;
@@ -78,9 +79,25 @@ const FlightsListWrapper = styled.div`
 `;
 
 const FlightsList = () => {
-  const [{ apiData }, dispatch] = useStateValue();
+  const [{ apiData, flightsList }, dispatch] = useStateValue();
   const offerId = window.location.href.split('/flights/');
-  
+
+  useEffect(() => {
+    const providersArray = apiData.map((item) => {
+      if (item.id === offerId[1]) {
+        return item.providers.map((item) => {
+          return item;
+        });
+      }
+    });
+    let filteredArray = providersArray.filter((provider) => provider);
+
+    dispatch({
+      type: 'FETCH_FLIGHTS',
+      payload: filteredArray[0],
+    });
+  }, []);
+
   useEffect(() => {
     apiData.map((item) => {
       if (item.id === offerId[1]) {
@@ -106,14 +123,11 @@ const FlightsList = () => {
         <Link to='/' className='back-icon'>
           <TiArrowBackOutline />
         </Link>
+        <FlightsListFilter />
       </div>
       <div className='flights-list'>
-        {apiData.map((item) => {
-          if (item.id === offerId[1]) {
-            return item.providers.map((item) => {
-              return <SingleProvider key={item.id} provider={item} />;
-            });
-          }
+        {flightsList?.map((item) => {
+          return <SingleProvider key={item.id} provider={item} />;
         })}
       </div>
     </FlightsListWrapper>

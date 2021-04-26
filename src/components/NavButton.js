@@ -44,10 +44,10 @@ const NavButtonWrapper = styled.button`
   }
 `;
 
-const NavButton = ({ title, icon }) => {
+const NavButton = ({ title, icon , onClick }) => {
 
   return (
-    <NavButtonWrapper>
+    <NavButtonWrapper onClick={onClick}>
       <div className='container'>
         {icon}
         <p>{title}</p>

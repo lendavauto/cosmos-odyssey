@@ -11,7 +11,8 @@ export const initialState = {
   flightsError: false,
   filteredOffers: [],
   clearedOffers: [],
-  filter: 'price-lowest',
+  filter: '',
+  flFilter: '',
   destinationFrom: '',
   destinationTo: '',
 };
@@ -45,19 +46,46 @@ const reducer = (state, action) => {
         offersErrorMessage: action.payload,
       };
     case 'FETCH_FLIGHTS':
-      return { ...state, flightsLoading: false, flightsList: action.payload };
-    case 'FETCH_FLIGHTS_ERROR':
-      return { ...state, flightsLoading: false, flightsError: true };
+      return { ...state, flightsList: action.payload };
     case 'SET_USER':
       return { ...state, user: action.payload };
     case 'LOG_OUT':
       return { ...state, user: null };
     case 'UPDATE_FILTER':
       return { ...state, filter: action.payload };
+    case 'UPDATE_FLIGHTS_FILTER':
+      return { ...state, flFilter: action.payload };
+    case 'FILTER_FLIGHTS':
+      const { flFilter, flightsList } = state;
+      let tempFlights = [...flightsList];
+
+      if (flFilter === 'price-lowest') {
+        tempFlights = tempFlights.sort(
+          (current, next) => current.price - next.price
+        );
+      }
+      if (flFilter === 'price-highest') {
+        tempFlights = tempFlights.sort(
+          (current, next) => next.price - current.price
+        );
+      }
+      if (flFilter === 'company-name-a') {
+        tempFlights = tempFlights.sort((current, next) => {
+          return current.company.name.localeCompare(
+            next.company.name
+          );
+        });
+      }
+    if (flFilter === 'company-name-z') {
+      tempFlights = tempFlights.sort((current, next) => {
+        return next.company.name.localeCompare(current.company.name);
+      });
+    }
+      return { ...state, flightsList: tempFlights };
     case 'FILTER_OFFERS':
-      const { filter, apiData, filteredOffers } = state;
+      const { filter, apiData } = state;
       let tempOffers = [...apiData];
-      let uniqueOffers = [...filteredOffers];
+
       if (filter === 'dist-lowest') {
         tempOffers = tempOffers.sort(
           (current, next) =>

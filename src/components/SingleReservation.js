@@ -142,6 +142,8 @@ const SingleReservation = ({
   valid_until,
   flight_time,
 }) => {
+  const isOfferValid = moment(valid_until).add(3, 'hour').endOf().fromNow();
+
   const formatPrice = (x) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   };
@@ -149,9 +151,6 @@ const SingleReservation = ({
   const addToCart = (e) => {
     e.preventDefault();
   };
-
-  const isOfferValid = moment(valid_until).add(3, 'hour').endOf().fromNow();
-
 
   return (
     <>
