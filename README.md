@@ -21,11 +21,6 @@ These instructions will get you a copy of the project up and running on your loc
 npm install 
 ```
 
-* Move to "src" folder in terminal and run express server with following command:
-
-```
-node expressProxy.js
-```
 
 * Open terminal and and enter following command to start development
 
