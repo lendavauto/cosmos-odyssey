@@ -29,7 +29,7 @@ const ReservationsWrapper = styled.div`
     background-color: #5fa7c9;
     border-bottom: 1px solid #1a78ab;
     @media (max-width: 900px) {
-   display: none;
+      display: none;
     }
     h1 {
       color: #fff;
@@ -65,8 +65,11 @@ const ReservationsWrapper = styled.div`
     }
   }
   .reservations-container {
-    height: calc(100% - 209px);
+    height: calc(100% - 89px);
     overflow-y: scroll;
+    @media (max-width: 900px) {
+      height: calc(100% - 158px);
+    }
   }
 `;
 

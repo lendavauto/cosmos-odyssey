@@ -115,7 +115,7 @@ const SingleProviderWrapper = styled.article`
       @media (max-width: 900px) {
         white-space: nowrap;
         bottom: 5px;
-        left: 250px;
+        left: 270px;
       }
     }
   }
