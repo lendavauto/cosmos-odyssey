@@ -89,6 +89,9 @@ const SingleProviderWrapper = styled.article`
       border-radius: 5px;
       padding: 2px;
       outline: none;
+      @media (max-width: 900px) {
+        width: 120px;
+      }
     }
     .last-name-input {
       margin-left: 15px;
@@ -98,7 +101,6 @@ const SingleProviderWrapper = styled.article`
     }
   }
   .input-flex {
-    flex: 0.5;
     display: flex;
     align-items: center;
     position: relative;
@@ -115,7 +117,7 @@ const SingleProviderWrapper = styled.article`
       @media (max-width: 900px) {
         white-space: nowrap;
         bottom: 5px;
-        left: 270px;
+        left: 275px;
       }
     }
   }

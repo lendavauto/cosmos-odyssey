@@ -9,11 +9,12 @@ const FilterWrapper = styled.div`
   align-items: center;
   background-color: #5fa7c9;
   color: #fff;
-  height: 60px;
+  height: 38px;
   border-bottom: 1px solid #1a78ab;
   @media (max-width: 900px) {
     flex-direction: column;
     align-items: flex-start;
+    height: 65px;
   }
   .destination-filter-container {
     display: flex;
@@ -62,6 +63,7 @@ const FilterWrapper = styled.div`
   .filter-container {
     display: flex;
     align-items: center;
+      margin-bottom: 4px;
     label {
       font-size: 12px;
       margin-right: 15px;

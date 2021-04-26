@@ -47,7 +47,7 @@ const FlightsWrapper = styled.div`
     overflow-y: scroll;
     height: calc(100% - 89px);
     @media (max-width: 900px) {
-      height: calc(100% - 180px);
+      height: calc(100% - 185px);
     }
   }
   .loader-container {
