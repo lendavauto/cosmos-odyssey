@@ -171,7 +171,7 @@ const SingleProvider = ({ provider }) => {
   const successMsg = useRef(0);
   const startDate = provider.flightStart.slice(0, 19);
   const endDate = provider.flightEnd.slice(0, 19);
-  console.log(priceListDate);
+  
   let end = moment(endDate);
   let start = moment(startDate);
   let duration = moment.duration(end.diff(start));
