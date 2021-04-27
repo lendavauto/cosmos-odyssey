@@ -29,21 +29,10 @@ npm start
 ```
 
 ## Usage
-* Choose flight list from the offer list
+* Choose flight list from the offers list
 
 * Insert first name & last name to register reservation
 
-## Deployment
-
-* Open terminal and and write following command to bundle up folder called dist
-
-```
-npm run build
-```
-
-* [Netlify](https://app.netlify.com/) - Register to Netlify
-
-* Under "Sites" drag & drop the bundled folder "dist" into the box on the bottom of the page
 
 ## Built With
 
