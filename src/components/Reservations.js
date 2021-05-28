@@ -59,6 +59,7 @@ const ReservationsWrapper = styled.div`
     font-size: 30px;
     color: #fff;
     margin-left: 15px;
+    transition: 0.3s ease-in-out;
     cursor: pointer;
     :hover {
       color: #aad7e3;

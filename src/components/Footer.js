@@ -6,6 +6,7 @@ const FooterWrapper = styled.footer`
   place-items: center;
   height: 105px;
   border: 2px solid #1a78ab;
+  border-bottom: none;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;

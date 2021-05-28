@@ -95,7 +95,7 @@ const Navbar = () => {
         <h1>
           Welcome,{' '}
           <Link to='/user-panel' style={{ textDecoration: 'none' }}>
-            <span>{user.displayName}</span>
+            <span>{user?.displayName}</span>
           </Link>
         </h1>
       </div>

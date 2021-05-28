@@ -37,6 +37,7 @@ const App = () => {
     <AppWrapper>
       <Header />
       {!user ? <Login /> : <MainSection />}
+      {/* <MainSection /> */}
       <Footer />
     </AppWrapper>
   );

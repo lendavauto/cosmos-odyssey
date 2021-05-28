@@ -159,7 +159,7 @@ const SingleProviderWrapper = styled.article`
 
 const SingleProvider = ({ provider }) => {
   const [
-    { user, priceListDate, routeFrom, routeTo },
+    { user, priceListDate, routeFrom, routeTo,cart },
     dispatch,
   ] = useStateValue();
   const [firstName, setFirstName] = useState('');
@@ -169,6 +169,7 @@ const SingleProvider = ({ provider }) => {
   const firstNameError = useRef(0);
   const lastNameError = useRef(0);
   const successMsg = useRef(0);
+  const singleReservation = useRef(0);
   const startDate = provider.flightStart.slice(0, 19);
   const endDate = provider.flightEnd.slice(0, 19);
   
@@ -224,7 +225,7 @@ const SingleProvider = ({ provider }) => {
     const successMsgInterval = setInterval(() => {
       successMsg.current.style = 'opacity: 0';
       clearInterval(successMsgInterval);
-    }, 2000);
+    }, 1000);
     setFirstName('');
     setLastName('');
   };

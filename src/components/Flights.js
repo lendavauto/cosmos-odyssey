@@ -11,7 +11,6 @@ const FlightsWrapper = styled.div`
   flex: 0.7;
   height: 100%;
   background-color: #fff;
-  border-left: 1px solid #1a78ab;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;

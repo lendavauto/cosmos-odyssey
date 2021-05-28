@@ -6,6 +6,7 @@ import logo from '../images/company-logo.png';
 const HeaderWrapper = styled.header`
   height: 95px;
   border: 2px solid #1a78ab;
+  border-top: none;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -39,8 +40,8 @@ const preventDrag = (e) => {
 const Header = () => {
   return (
     <HeaderWrapper>
-      <Link to='/'>
-        <img src={logo} alt='logo' className='logo' onDragStart={preventDrag} />
+      <Link to='/' onDragStart={preventDrag}>
+        <img src={logo} alt='logo' className='logo' />
       </Link>
       <h1>Cosmos Odyssey</h1>
     </HeaderWrapper>

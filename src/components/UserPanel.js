@@ -4,7 +4,6 @@ import { useStateValue } from '../StateProvider';
 import { Link } from 'react-router-dom';
 import { BsFolderPlus } from 'react-icons/bs';
 import { TiArrowBackOutline } from 'react-icons/ti';
-import Password from './Password';
 
 const UserPanelWrapper = styled.div`
   flex: 0.7;
@@ -152,6 +151,7 @@ const UserPanelWrapper = styled.div`
     font-size: 30px;
     color: #fff;
     margin-left: 15px;
+    transition: 0.3s ease-in-out;
     cursor: pointer;
     :hover {
       color: #aad7e3;
@@ -206,7 +206,7 @@ const UserPanel = () => {
           </p>
           <button className='edit-btn'>Edit</button>
         </div>
-        <Password />
+
       </div>
     </UserPanelWrapper>
   );

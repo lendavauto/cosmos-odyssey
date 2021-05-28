@@ -1,10 +1,24 @@
+const getLocalStorage = () => {
+  let cart = localStorage.getItem('cart');
+  if (cart) {
+    return JSON.parse(localStorage.getItem('cart'));
+  } else {
+    return [];
+  }
+};
+
 export const initialState = {
   user: null,
   apiData: [],
+  cart: getLocalStorage(),
+  total_items: 0,
+  total_amount: 0,
   priceListDate: '',
   routeFrom: '',
   routeTo: '',
   flightsList: [],
+  historyModalOpen: false,
+  paymentModalOpen: false,
   offersLoading: false,
   flightsLoading: false,
   offersError: false,
@@ -18,7 +32,7 @@ export const initialState = {
 };
 
 const reducer = (state, action) => {
-
+  console.log(action);
   switch (action.type) {
     case 'LOADING_TRUE':
       return { ...state, offersLoading: true };
@@ -51,6 +65,61 @@ const reducer = (state, action) => {
       return { ...state, user: action.payload };
     case 'LOG_OUT':
       return { ...state, user: null };
+    case 'ADD_TO_CART':
+      const { flight_id, amount } = action.payload;
+      const tempItem = state.cart.find((i) => i.flight_id === flight_id);
+      if (tempItem) {
+        return { ...state };
+      } else {
+        return { ...state, cart: [...state.cart, action.payload] };
+      }
+    case 'REMOVE_CART_ITEM':
+      const tempCart = state.cart.filter(
+        (item) => item.flight_id !== action.payload
+      );
+      return { ...state, cart: tempCart };
+    case 'TOGGLE_ITEM_AMOUNT':
+      const { id, value } = action.payload;
+      const newCart = state.cart.map((item) => {
+        if (item.flight_id === id) {
+          if (value === 'inc') {
+            let newAmount = item.amount + 1;
+            return { ...item, amount: newAmount };
+          }
+          if (value === 'dec') {
+            let newAmount = item.amount - 1;
+            if (newAmount < 1) {
+              newAmount = 1;
+            }
+            return { ...item, amount: newAmount };
+          }
+        } else {
+          return item;
+        }
+      });
+      return { ...state, cart: newCart };
+    case 'COUNT_CART_TOTALS':
+      const { total_items, total_amount } = state.cart.reduce(
+        (total, cart) => {
+          const { amount, price } = cart;
+          total.total_items += amount;
+          total.total_amount += price * amount;
+          return total;
+        },
+        {
+          total_items: 0,
+          total_amount: 0,
+        }
+      );
+      return { ...state, total_items, total_amount };
+    case 'HISTORY_MODAL_OPEN':
+      return { ...state, historyModalOpen: true };
+    case 'HISTORY_MODAL_CLOSE':
+      return { ...state, historyModalOpen: false };
+    case 'PAYMENT_MODAL_OPEN':
+      return { ...state, paymentModalOpen: true };
+    case 'PAYMENT_MODAL_CLOSE':
+      return { ...state, paymentModalOpen: false };
     case 'UPDATE_FILTER':
       return { ...state, filter: action.payload };
     case 'UPDATE_FLIGHTS_FILTER':
