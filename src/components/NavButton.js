@@ -43,6 +43,10 @@ const NavButtonWrapper = styled.button`
     color: #fff;
     background-color: #082b44;
     transform: scale(0.19);
+    @media (max-width: 900px) {
+      bottom: -45px;
+      transform: scale(0.17);
+    }
   }
 `;
 

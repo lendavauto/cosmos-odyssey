@@ -12,6 +12,7 @@ import { MdRemoveShoppingCart } from 'react-icons/md';
 import { IoBagCheckOutline } from 'react-icons/io5';
 import { IoMdCloseCircleOutline } from 'react-icons/io';
 import logo from '../images/stripe-logo.png';
+import StripeCheckout from './StripeCheckout';
 
 const CheckoutWrapper = styled.div`
   flex: 0.7;
@@ -81,25 +82,45 @@ const CheckoutWrapper = styled.div`
     }
   }
   .checkout-message-container {
-    display: grid;
-    place-items: center;
-    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100% - 195px);
+    overflow: hidden;
     h1 {
       color: #222;
       font-size: 18px;
       letter-spacing: 0.5px;
       font-family: 'Zen Dots', cursive;
     }
+    button {
+      display: block;
+      margin: 0 auto;
+      padding: 10px;
+      color: #222;
+      text-transform: capitalize;
+      border-radius: 5px;
+      border: 1px solid lightgray;
+      transition: 0.2s ease-in;
+      cursor: pointer;
+      :hover {
+        background-color: #aad7e3;
+        border: 1px solid #222;
+      }
+    }
   }
-  img {
-    width: 150px;
-  }
+
   .checkout-container {
     position: relative;
     height: calc(100% - 195px);
     width: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
+    @media (max-width: 900px) {
+      height: calc(100% - 169px);
+    }
   }
   .history-icon {
     position: absolute;
@@ -116,6 +137,9 @@ const CheckoutWrapper = styled.div`
   .cart-item-container {
     height: 191px;
     border-bottom: 1px solid #1a78ab;
+    @media (max-width: 900px) {
+      height: 200px;
+    }
   }
   .cart-item-nr {
     font-size: 10px;
@@ -227,6 +251,9 @@ const CheckoutWrapper = styled.div`
     height: 104px;
     background-color: #5fa7c9;
     border-top: 1px solid #1a78ab;
+    @media (max-width: 900px) {
+      height: 129px;
+    }
     .cart-total-icon {
       color: #082b44;
       font-size: 22px;
@@ -290,29 +317,41 @@ const CheckoutWrapper = styled.div`
     transform: translateX(100%);
     transition: 0.3s ease-in-out;
   }
-    .modal-header {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      width: 100%;
-      border-bottom: 1px solid #1a78ab;
-      h1 {
-        flex: 0.9;
-        color: #082b44;
-        font-size: 18px;
-        text-transform: capitalize;
-      }
-      .modal-close-icon {
-        flex: 0.1;
-        font-size: 28px;
-        margin-right: 15px;
-        color: #082b44;
-        cursor: pointer;
-        :hover {
-          color: #f41f1f;
-        }
+  .history-modal-empty {
+    position: absolute;
+    background-color: #fff;
+    height: calc(100% - 30px);
+    width: 100%;
+    margin-left: 15px;
+    margin-top: 15px;
+    border: 1px solid #1a78ab;
+    border-radius: 5px;
+    transform: translateX(100%);
+    transition: 0.3s ease-in-out;
+  }
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    border-bottom: 1px solid #1a78ab;
+    h1 {
+      flex: 0.9;
+      color: #082b44;
+      font-size: 18px;
+      text-transform: capitalize;
+    }
+    .modal-close-icon {
+      flex: 0.1;
+      font-size: 28px;
+      margin-right: 15px;
+      color: #082b44;
+      cursor: pointer;
+      :hover {
+        color: #f41f1f;
       }
     }
+  }
   .payment-modal {
     position: absolute;
     background-color: #fff;
@@ -403,24 +442,32 @@ const Checkout = () => {
   }, [cart]);
 
   useEffect(() => {
-    if (historyModalOpen === true && cart.length > 0) {
-      historyModalRef.current.style.transform = 'translateX(0px)';
+    if (cart.length > 0) {
+      if (historyModalOpen === true) {
+        historyModalRef.current.style.transform = 'translateX(0px)';
+      }
+      if (historyModalOpen === false) {
+        historyModalRef.current.style.transform = 'translateX(100%)';
+      }
+      if (paymentModalOpen === false) {
+        paymentModalRef.current.style = 'visibility:hidden';
+      }
+      if (paymentModalOpen === true) {
+        paymentModalRef.current.style = 'visibility:visible';
+      }
     }
-    if (historyModalOpen === false && cart.length > 0) {
-      historyModalRef.current.style.transform = 'translateX(100%)';
-    }
-  }, [historyModalOpen]);
+  }, [cart, historyModalOpen, paymentModalOpen]);
 
   useEffect(() => {
-    if (historyModalOpen === false && cart.length > 0) {
-      paymentModalRef.current.style = 'visibility:hidden';
+    if (cart.length <= 0) {
+      if (historyModalOpen === true) {
+        historyModalRef.current.style.transform = 'translateX(0px)';
+      }
+      if (historyModalOpen === false) {
+        historyModalRef.current.style.transform = 'translateX(100%)';
+      }
     }
-    if (paymentModalOpen === true && cart.length > 0) {
-      paymentModalRef.current.style = 'visibility:visible';
-      console.log(paymentModalOpen);
-    }
-  }, [paymentModalOpen]);
-
+  }, [historyModalOpen]);
   return (
     <CheckoutWrapper>
       <div className='checkout-title'>
@@ -443,7 +490,18 @@ const Checkout = () => {
       {cart.length < 1 ? (
         <div className='checkout-message-container'>
           <h1>Your cart is empty...</h1>
-          <button>Check Offers</button>
+          <Link to='/' style={{ textDecoration: 'none' }}>
+            <button>shop now</button>
+          </Link>
+          <div className='history-modal-empty' ref={historyModalRef}>
+            <div className='modal-header'>
+              <IoMdCloseCircleOutline
+                className='modal-close-icon'
+                onClick={() => historyModal('close')}
+              />
+              <h1>purchase history</h1>
+            </div>
+          </div>
         </div>
       ) : (
         <div className='checkout-container'>
@@ -464,6 +522,7 @@ const Checkout = () => {
               />
               <h1>confirm payment</h1>
             </div>
+            <StripeCheckout />
           </div>
           {cart?.map(
             ({

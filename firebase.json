@@ -1,6 +1,17 @@
 {
   "hosting": {
     "public": "dist",
+    "headers": [
+      {
+        "source": "**",
+        "headers": [
+          {
+            "key": "Access-Control-Allow-Origin",
+            "value": "*"
+          }
+        ]
+      }
+    ],
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
@@ -8,8 +19,12 @@
         "destination": "/index.html"
       },
       {
-        "source": "*",
+        "source": "/",
         "function": "customApi"
+      },
+      {
+        "source": "**",
+        "function": "createPaymentIntent"
       }
     ]
   },

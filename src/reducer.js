@@ -65,6 +65,8 @@ const reducer = (state, action) => {
       return { ...state, user: action.payload };
     case 'LOG_OUT':
       return { ...state, user: null };
+    case 'CLEAR_CART':
+      return { ...state, cart: [] };
     case 'ADD_TO_CART':
       const { flight_id, amount } = action.payload;
       const tempItem = state.cart.find((i) => i.flight_id === flight_id);
@@ -112,12 +114,14 @@ const reducer = (state, action) => {
         }
       );
       return { ...state, total_items, total_amount };
-    case 'HISTORY_MODAL_OPEN':
+    case 'SHOW_HISTORY':
       return { ...state, historyModalOpen: true };
+    case 'HISTORY_MODAL_OPEN':
+      return { ...state, historyModalOpen: true, paymentModalOpen: false };
     case 'HISTORY_MODAL_CLOSE':
       return { ...state, historyModalOpen: false };
     case 'PAYMENT_MODAL_OPEN':
-      return { ...state, paymentModalOpen: true };
+      return { ...state, paymentModalOpen: true, historyModalOpen: false };
     case 'PAYMENT_MODAL_CLOSE':
       return { ...state, paymentModalOpen: false };
     case 'UPDATE_FILTER':

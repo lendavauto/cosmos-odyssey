@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "cosmos-odyssey"
+    "default": "cosmos-odyssey",
+    "cosmos-odyssey-alias": "cosmos-odyssey"
   }
 }
