@@ -285,7 +285,7 @@ const CheckoutForm = () => {
       setClientSecret(response.data.clientSecret);
     };
     createPaymentIntent();
-  }, [cart]);
+  }, [,cart]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

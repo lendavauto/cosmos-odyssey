@@ -8,6 +8,9 @@ import { CgDollar } from 'react-icons/cg';
 const OrderWrapper = styled.article`
   width: 100%;
   height: fit-content;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #1a78ab;
 
   .order-nr {
     font-size: 10px;
@@ -97,7 +100,10 @@ const Order = ({ order }) => {
           user_email,
         }) => {
           return (
-            <article className='order-item-container' key={flight_id}>
+            <article
+              className='order-item-container'
+              key={flight_id}
+            >
               <p className='cart-item-nr'>
                 <span>flight nr</span>:{flight_id}
               </p>
@@ -131,7 +137,7 @@ const Order = ({ order }) => {
                   <span>Amount:</span> {amount}
                 </p>
               </div>
-              <div className='cart-item-price-container order-total'>
+              <div className='cart-item-price-container'>
                 <p>
                   <span>price: </span>
                   {formatPrice(price * amount)}

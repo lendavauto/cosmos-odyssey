@@ -382,9 +382,6 @@ const CheckoutWrapper = styled.div`
     border: 1px solid #1a78ab;
     border-radius: 5px;
   }
-  .order-total {
-    border-bottom: 1px solid #1a78ab;
-  }
 `;
 
 const Checkout = () => {
