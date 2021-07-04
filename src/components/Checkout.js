@@ -11,9 +11,9 @@ import { CgAdd } from 'react-icons/cg';
 import { MdRemoveShoppingCart } from 'react-icons/md';
 import { IoBagCheckOutline } from 'react-icons/io5';
 import { IoMdCloseCircleOutline } from 'react-icons/io';
-import logo from '../images/stripe-logo.png';
+import { FaCcStripe } from 'react-icons/fa';
 import StripeCheckout from './StripeCheckout';
-
+import OrderHistory from './OrderHistory'
 const CheckoutWrapper = styled.div`
   flex: 0.7;
   height: 100%;
@@ -26,6 +26,26 @@ const CheckoutWrapper = styled.div`
   user-select: none;
   @media (max-width: 900px) {
     flex: 1;
+  }
+  .powered-by {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: -30px;
+    p {
+      font-size: 12px;
+      font-weight: bold;
+      color: #32325d;
+    }
+    .stripe-icon {
+      font-size: 65px;
+      margin-left: 5px;
+      color: #008cdd;
+    }
+    @media (max-width: 900px) {
+      display: none;
+    }
   }
   .checkout-title {
     display: flex;
@@ -362,6 +382,9 @@ const CheckoutWrapper = styled.div`
     border: 1px solid #1a78ab;
     border-radius: 5px;
   }
+  .order-total {
+    border-bottom: 1px solid #1a78ab;
+  }
 `;
 
 const Checkout = () => {
@@ -501,6 +524,7 @@ const Checkout = () => {
               />
               <h1>purchase history</h1>
             </div>
+            <OrderHistory />
           </div>
         </div>
       ) : (
@@ -513,6 +537,7 @@ const Checkout = () => {
               />
               <h1>purchase history</h1>
             </div>
+            <OrderHistory />
           </div>
           <div className='payment-modal' ref={paymentModalRef}>
             <div className='modal-header'>
@@ -521,6 +546,10 @@ const Checkout = () => {
                 onClick={() => paymentModal('close')}
               />
               <h1>confirm payment</h1>
+            </div>
+            <div className='powered-by'>
+              <p>Secure payment by:</p>
+              <FaCcStripe className='stripe-icon' />
             </div>
             <StripeCheckout />
           </div>

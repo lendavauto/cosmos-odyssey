@@ -15,6 +15,7 @@ import { FaCcDiscover } from 'react-icons/fa';
 import { FaCcJcb } from 'react-icons/fa';
 import { SiAmericanexpress } from 'react-icons/si';
 import axios from '../axios';
+import { db } from '../firebase';
 
 const StripeCheckoutWrapper = styled.div`
   display: flex;
@@ -22,7 +23,6 @@ const StripeCheckoutWrapper = styled.div`
   justify-content: center;
   height: calc(100% - 54px);
   width: calc(100% - 1px);
-
   .price-container {
     display: flex;
     justify-content: center;
@@ -298,6 +298,16 @@ const CheckoutForm = () => {
         },
       })
       .then(({ paymentIntent }) => {
+        db.collection('users')
+          .doc(user?.email)
+          .collection('orders')
+          .doc(paymentIntent.id)
+          .set({
+          cart: cart,
+          amount: paymentIntent.amount,
+          created: paymentIntent.created,
+        });
+
         setSucceeded(true);
         setError(null);
         setProcessing(false);
