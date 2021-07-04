@@ -73,7 +73,7 @@ const Order = ({ order }) => {
     }
     return parts.join('.');
   };
-
+  console.log(order.data);
   return (
     <OrderWrapper>
       <p className='order-nr'>
@@ -128,6 +128,11 @@ const Order = ({ order }) => {
               </div>
               <div className='cart-item-price-container'>
                 <p>
+                  <span>Amount:</span> {amount}
+                </p>
+              </div>
+              <div className='cart-item-price-container order-total'>
+                <p>
                   <span>price: </span>
                   {formatPrice(price * amount)}
                   <CgDollar className='price-icon' />
@@ -138,20 +143,15 @@ const Order = ({ order }) => {
                   <span className='hours-span'>Hours</span>
                 </p>
               </div>
-              <div className='cart-item-price-container'>
-                <p>
-                  <span>Amount:</span> {amount}
-                </p>
-              </div>
             </article>
           );
         }
       )}
-      <div className='cart-item-price-container order-total'>
+      {/* <div className='cart-item-price-container order-total'>
         <p>
           <span>Order total:</span> {formatPrice(order.data.amount / 100)}
         </p>
-      </div>
+      </div> */}
     </OrderWrapper>
   );
 };
